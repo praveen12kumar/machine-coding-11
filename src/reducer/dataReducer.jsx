@@ -9,7 +9,7 @@ export const dataReducer = (state, {type, payload})=>{
 
         case "addReleaseYear":
             return{
-                ...state, releaseYear: payload
+                ...state,  releaseYear: payload
             }
 
         case "addRating":
@@ -26,6 +26,11 @@ export const dataReducer = (state, {type, payload})=>{
         case "removeFromWatchlist":
             return{
                 ...state, watchList:[...payload]
+            }
+
+        case "addAllGenre":
+            return{
+                ...state, genre: payload
             }
             
         

@@ -10,9 +10,9 @@ export const DataProvider = ({children})=>{
         data: movies,
         search:"",
         watchList:[],
-        genre:"",
-        releaseYear:"",
-        rating:"",
+        genre:"allGenre",
+        releaseYear:"allRelease",
+        rating:"allRating",
     }
 
     const [state, dispatch] = useReducer(dataReducer, initialState);

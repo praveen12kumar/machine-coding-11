@@ -64,9 +64,24 @@ const Home = () => {
         })
     };
 
-    let genreFilter = data?.filter((movie)=> movie.genre.filter((m)=> m === genre)  );
-     
-    filteredData = genreFilter;
+    
+    
+
+    let genreFilter = data.filter((mov)=>{
+        return genre != "allGenre"
+          ? mov.genre.find((gen)=>gen ==genre)
+          : 1 == 1;
+      })
+      let starfilter = genreFilter.filter((mov)=>{
+        return rating != "allRating"
+        ? mov.rating == rating
+        : 1 == 1;
+      })
+      let yearFilter = starfilter.filter((mov)=>{
+        return releaseYear != "allRelease"
+        ? mov.year == releaseYear
+        : 1 == 1;
+      })
 
 
 
@@ -81,7 +96,7 @@ const Home = () => {
               openGenre ? 
         <div className="genre-options">
                   
-          <div className="dropdown-option" onClick={()=> handleAllGenre("All-Genre") } >All Genre</div>
+          <div className="dropdown-option" onClick={()=> handleGenre("allGenre") } >All Genre</div>
                 {
                     genreArray?.map((genre)=> (
                         <div className="dropdown-option" onClick={()=> handleGenre(`${genre}`) } >{genre}</div>
@@ -100,7 +115,7 @@ const Home = () => {
               openRelease ? 
               <div className="release-options">
                   
-          <div className="dropdown-option" onClick={()=> handleAllRelease("All") } >All Years</div>
+          <div className="dropdown-option" onClick={()=> handleRelease("allRelease") } >All Years</div>
                 {
                     releaseArray?.map((year)=>(
                         <div className="dropdown-option" onClick={()=> handleRelease(`${year}`)}>{year}</div>
@@ -120,12 +135,11 @@ const Home = () => {
               openRating ? 
               <div className="rating-options">
                   
-                  <div className="dropdown-option" onClick={()=> handleAllRating("All")}>All</div>
+                  <div className="dropdown-option" onClick={()=> handleRating("allRating")}>All</div>
                  {
                     ratingArray?.map((rating)=>(
                         <div className="dropdown-option" onClick={()=> handleRating(`${rating}`)}>{rating}</div>
                     ))
-
                  }
               </div>
               : null
@@ -141,7 +155,7 @@ const Home = () => {
             {/* main container */}
             <div className="main-movie-container">
                 {
-                    filteredData?.map((movie)=>(
+                    yearFilter?.map((movie)=>(
                         <MovieCard movie={movie} key={movie.id}/>
                     ))
                 }
