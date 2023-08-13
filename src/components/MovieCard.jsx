@@ -24,7 +24,7 @@ const MovieCard = ({movie}) => {
     const removeFromWatchlist = (id, watchList)=>{
         const movie = watchList?.filter((movie)=> movie.id !== id);
         dataDispatch({
-            type:"AddToWatch",
+            type:"removeFromWatchlist",
             payload: movie,
         })
     }
@@ -56,7 +56,9 @@ const MovieCard = ({movie}) => {
                 <button className='star'>Star</button>
                 
                     {
-                        checkWatchlist(movie.id, watchList) ? <button className="watchlist" onClick={()=>removeFromWatchlist(id, watchList)} >Added to Watch list</button> : <button className="watchlist" onClick={()=>addToWatchlist(id)} > Add to watch list</button>
+                        checkWatchlist(movie.id, watchList) ? 
+                        <button className="watchlist" onClick={()=>handleAddToWatch(id, watchList)} >Added to Watch list</button> : 
+                        <button className="watchlist" onClick={()=>handleAddToWatch(id, watchList)} > Add to watch list</button>
                     }
                 
             </div>

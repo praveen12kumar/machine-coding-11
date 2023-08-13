@@ -23,7 +23,10 @@ export const dataReducer = (state, {type, payload})=>{
                 ...state, watchList:[...state.watchList, payload]
             }
         
-        case "addAllGenre":
+        case "removeFromWatchlist":
+            return{
+                ...state, watchList:[...payload]
+            }
             
         
        
